@@ -12,9 +12,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-dark">
-  <div class="row">
+  <div class="row w-100">
     <div class="col-md-4"></div>
-    <div class="col-md-4 p-4 rounded mt-5" style="background-color: rgb(93, 206, 200);">
+    <div class="col-md-4 mx-4 mx-md-0 p-4 rounded mt-5" style="background-color: rgb(93, 206, 200);">
       <div class="d-flex">
         <input type="text" id="city" class="form-control" placeholder="Enter place">
         <button onclick="search()" class="btn ms-2 btn-primary">Search</button>
@@ -43,12 +43,28 @@
         console.log(data.main.pressure);
         console.log(data.wind.speed);
         console.log(data.weather[0].icon);
+        const date = new Date(data.dt*1000)
+        console.log(date.getDate());
+        console.log(date.getDay());
+        console.log(date.getFullYear());
+        console.log(date.getMonth());
+
+        console.log(date.getHours())
+        console.log(date.getMinutes());
+        console.log(date.getSeconds());
+        
+        
+        
+        
+        
+        console.log(date);
+        
         res.innerHTML= `
         <div class="text-center">
           <img class="w-50" src=${`https://rodrigokamada.github.io/openweathermap/images/${data.weather[0].icon}_t@4x.png`}><br>
-          <span>${Math.round(((data.main.temp*1000)-273.15*1000)/1000)}℃,</span>${data.weather[0].main}<br>feels like ${Math.round(((data.main.feels_like*1000)-273.15*1000)/1000)}℃
-          <h3>${data.name}</h3>
-        </div>
+          <span class="fs-3 fw-bold">${Math.round(((data.main.temp*1000)-273.15*1000)/1000)}℃,</span>${data.weather[0].main}<br>feels like ${Math.round(((data.main.feels_like*1000)-273.15*1000)/1000)}℃
+          <h2>${data.name}</h2>
+          <span>${date.getDate()}/${date.getMonth()}/${date.getFullYear()}</span><span class="ms-2">${date.getHours()>12?date.getHours()-12:date.getHours}:${date.getMinutes()}:${date.getSeconds()} ${date.getHours()>12?"PM":"AM"}</span>
         </div>
       <div class="d-md-flex mt-3">
         <div class="box shadow w-100 mx-1 p-1 d-flex flex-column align-items-center rounded">humidity

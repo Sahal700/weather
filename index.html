@@ -12,19 +12,21 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-dark">
-  <div class="row w-100">
-    <div class="col-md-4"></div>
-    <div class="col-md-4 mx-4 mx-md-0 p-4 rounded mt-5" style="background-color: rgb(93, 206, 200);">
-      <div class="d-flex">
-        <input type="text" id="city" class="form-control" placeholder="Enter place">
-        <button onclick="search()" class="btn ms-2 btn-primary">Search</button>
-      </div>
-     
-      <div id="res">
+  <div class="container-fluid">
+    <div class="row w-100">
+      <div class="col-md-4"></div>
+      <div class="col-md-4 mx-2 mx-md-0 p-4 rounded mt-5" style="background-color: rgb(93, 206, 200);">
+        <div class="d-flex" style="position: relative;">
+          <input type="text" id="city" class="form-control" placeholder="Enter a place">
+          <button style="background-color: transparent; border: none; position:absolute; right:0px;" class="p-2 pe-3" onclick="search()"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+       
+        <div id="res">
+          
         
-      
+      </div>
+      <div class="col-md-4"></div>
     </div>
-    <div class="col-md-4"></div>
   </div>
   
 </body>

@@ -15,7 +15,7 @@
   <div class="container-fluid">
     <div class="row w-100">
       <div class="col-md-4"></div>
-      <div class="col-md-4 mx-2 mx-md-0 p-4 rounded mt-5" style="background-color: rgb(93, 206, 200);">
+      <div class="col-md-4 mx-2 mx-md-0 p-4 rounded mt-5" style="background-color: rgba(0, 0, 0, 0.123);">
         <div class="d-flex" style="position: relative;">
           <input type="text" id="city" class="form-control" placeholder="Enter a place">
           <button style="background-color: transparent; border: none; position:absolute; right:0px;" class="p-2 pe-3" onclick="search()"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -37,6 +37,7 @@
       response.json().then((data)=>{
         console.log(data);
         console.log(data.weather[0].main);
+        console.log(data.weather[0].description);
         console.log(data.main.temp);
         console.log(data.main.humidity);
         console.log(data.timezone);
@@ -55,6 +56,27 @@
         console.log(date.getMinutes());
         console.log(date.getSeconds());
         
+        if(data.weather[0].description=='mist'){
+          document.body.style.backgroundImage = "url('./images/mist.jpg')";
+        }else if (data.weather[0].description=='clear sky') {
+          document.body.style.backgroundImage = "url('./images/clear.jpg')";
+        }else if (data.weather[0].description=='few clouds') {
+          document.body.style.backgroundImage = "url('./images/clouds.jpg')";
+        }else if (data.weather[0].description=='scattered clouds') {
+          document.body.style.backgroundImage = "url('./images/scaterd.jpg')";
+        }else if (data.weather[0].description=='broken clouds') {
+          document.body.style.backgroundImage = "url('./images/broken.jpg')";
+        }else if (data.weather[0].description=='shower rain') {
+          document.body.style.backgroundImage = "url('./images/shower rain.jpg')";
+        }else if (data.weather[0].description=='rain') {
+          document.body.style.backgroundImage = "url('./images/rain.jpg')";
+        }else if (data.weather[0].description=='thunderstorm') {
+          document.body.style.backgroundImage = "url('./images/thunder.jpg')";
+        }else if (data.weather[0].description=='snow') {
+          document.body.style.backgroundImage = "url('./images/snow.webp')";
+        } else {
+          document.body.style.backgroundImage = "url('./images/mist.jpg')";
+        }
         
         
         
@@ -66,7 +88,8 @@
           <img class="w-50" src=${`https://rodrigokamada.github.io/openweathermap/images/${data.weather[0].icon}_t@4x.png`}><br>
           <span class="fs-3 fw-bold">${Math.round(((data.main.temp*1000)-273.15*1000)/1000)}℃,</span>${data.weather[0].main}<br>feels like ${Math.round(((data.main.feels_like*1000)-273.15*1000)/1000)}℃
           <h2>${data.name}</h2>
-          <span>${date.getDate()}/${date.getMonth()}/${date.getFullYear()}</span><span class="ms-2">${date.getHours()>12?date.getHours()-12:date.getHours}:${date.getMinutes()}:${date.getSeconds()} ${date.getHours()>12?"PM":"AM"}</span>
+          
+          <span>${date.getDate()}/${date.getMonth()}/${date.getFullYear()}</span><span class="ms-2">${date.getHours()>12?date.getHours()-12:date.getHours()}:${date.getMinutes()}:${date.getSeconds()} ${date.getHours()>12?"PM":"AM"}</span>
         </div>
       <div class="d-md-flex mt-3">
         <div class="box shadow w-100 mx-1 p-1 d-flex flex-column align-items-center rounded">humidity
